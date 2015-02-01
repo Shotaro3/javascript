@@ -1,13 +1,12 @@
-javascript:
-// var0.1
+/* var0.1 */
 jQuery(document).ready(function() {
 
 	var flg = false;
 
-	// ポップアップポップアップコントロール
+	/* ポップアップポップアップコントロール */
 	jQuery(document.body).on('click',function(event){
 		if (flg) {
-				// ポップアップ除去
+				/* ポップアップ除去 */
 				if ($(event.target).prop('id') == 'overlay') {
 					$(document.body).find('div#popup').remove();
 					$(document.body).find('div#overlay').remove();
@@ -28,7 +27,7 @@ jQuery(document).ready(function() {
 			position.x = event.clientX+"px";
 			console.log(position);
 
-			// 表示する要素を生成
+			/* 表示する要素を生成 */
 			$wraper = $('<div/>')
 						.attr('id','popup')
 						.css({
@@ -39,7 +38,7 @@ jQuery(document).ready(function() {
 
 			$title = $("<h1/>").text('ポップアップパネル');
 
-			// ポップアップパネル作成
+			/* ポップアップパネル作成 */
 			$panel = $wraper
 						.find('section')
 							.append($title)
@@ -48,13 +47,13 @@ jQuery(document).ready(function() {
 							.append(contents.name)
 						.end();
 
-			// ポップアップパネルを画面に追加
+			/* ポップアップパネルを画面に追加 */
 			$(document.body).append($panel);
 
 			$gray = $("<div/>").prop({id:"overlay"});
 			$(document.body).append($gray);
 
-			// エフェクト
+			/* エフェクト */
 			$(document.body)
 					.find('div#overlay').fadeIn('fast')
 				.end()
