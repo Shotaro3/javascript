@@ -11,19 +11,19 @@ jQuery.fn.plugin = {
 	class	:	{
 	},
 
-	// 共通処理
+	//	共通処理
 	_controler	:	function(values){
 		//※	入力情報の整理	※//
 
 		//	引数の形式チェック
 		var	_prop	=	values;
-			//	今回はなし
+			//	今回はなしの予定
 
 		//	入力データ受領
 		var	prop = _prop;
 
-		//※	データ生成処理	※//
-			//	データ生成開始
+		//※	出力用データ生成処理	※//
+			//	出力用データの必須項目を宣言
 			var	data	=	{
 				text: "なんらかの文字列",
 			};
@@ -46,7 +46,7 @@ jQuery.fn.plugin = {
 		},
 	},
 
-	//	処理系をまとめる
+	//	処理系をまとめる（まだ何も考えてない）
 	_modul	:	function(){
 	},
 };
