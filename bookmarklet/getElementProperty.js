@@ -15,14 +15,15 @@ jQuery.fn.plugin = {
 	_controler	:	function(values){
 		//※	入力情報の整理	※//
 
-		//	引数の形式チェック
-		var	_prop	=	values;
-			//	今回はなしの予定
+			//	引数の形式チェック
+			var	_prop	=	values;
+				//	今回はなしの予定
 
-		//	入力データ受領
-		var	prop = _prop;
+			//	入力データ受領
+			var	prop = _prop;
 
 		//※	出力用データ生成処理	※//
+
 			//	出力用データの必須項目を宣言
 			var	data	=	{
 				text: "なんらかの文字列",
@@ -30,11 +31,12 @@ jQuery.fn.plugin = {
 
 			//	今回はデータ生成の予定なし
 
-			//	生成データのざっくりマージ
+			//	出力用にデータをざっくりマージ
 			var	setting	=	jQuery.extend(false, data, prop);			
 
 		//※	表示処理	※//
-		jQuery(this).plugin._view.alert(setting.text);
+
+			jQuery(this).plugin._view.alert(setting.text);
 
 	},
 
