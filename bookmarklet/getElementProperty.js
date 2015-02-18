@@ -1,64 +1,108 @@
-jQuery.fn.plugin = {
-	//	UI
-	id		:	function(){
-		// 固有処理の予定
-		jQuery(this).plugin._controler({
-			text:	'id'+':'+'test'
-		});
-	},
-	name	:	{
-	},
-	class	:	{
-	},
-
-	//	共通処理
-	_controler	:	function(values){
-		//※	入力情報の整理	※//
-
-			//	引数の形式チェック
-			var	_prop	=	values;
-				//	今回はなしの予定
-
-			//	入力データ受領
-			var	prop = _prop;
-
-		//※	出力用データ生成処理	※//
-
-			//	出力用データの必須項目を宣言
-			var	data	=	{
-				text: "なんらかの文字列",
-			};
-
-			//	今回はデータ生成の予定なし
-
-			//	出力用にデータをざっくりマージ
-			var	setting	=	jQuery.extend(false, data, prop);			
-
-		//※	表示処理	※//
-
-			jQuery(this).plugin._view.alert(setting.text);
-
-	},
-
-	//	VIEW処理
-	_view	:	{
-		//	alert表示
-		alert	:	function(text){
-			window.alert(text);
+(function(){
+	jQuery.fn.plugin = {
+		//	UI
+		id		:	function(){
+			// 固有処理の予定
+			jQuery(this).plugin._controler({
+				text:	'id'+':'+'test'
+			});
 		},
-	},
+		name	:	{
+		},
+		class	:	{
+		},
 
-	//	処理系をまとめる（まだ何も考えてない）
-	_modul	:	function(){
-	},
-};
 
-// var0.01
+		//	メイン処理の予定
+		main	:	{
+			//	イメージとしては、システム値を元にsceneを切り替える処理になります
+			//	システム処理の中枢になる想定です
+			//	なので、UIから呼ばれた際に、最初に必ず通ります
+			//	シーンにとらわれずに行う処理系をまとめます
+		},
+
+		//	システム管理系です
+		_controler	:	{
+			// システム起動から終了までは、処理を場面ごとに管理します
+			scene	:	{
+				//	準備段階
+				preparation	: function(){
+					//	起動するかの対話
+				},
+				//	起動処理
+				startup	:	function(){
+					//	稼働用の設定等
+				}, 
+				//	メイン稼働
+				begin	:	function(){
+					//	基本はこの繰り返しの予定
+				}, 
+				//	待機
+				standby	:	function(){
+					//	メイン稼働もしくは、こちらが動く予定
+				}, 
+				//	終了処理用
+				end	:	function(){
+					//	完全に停止させる
+				}, 
+
+			}
+			//	段階的に管理する処理はこちらに記載（とりあえず）
+			stage	:	{
+				//処理名でobjectを命名したい
+			}
+		}
+		//	ユーザーからの入力を求める処理系をまとめます
+		_imput	:	{
+			//	prompt表示
+			prompt	:	function(text){
+				return window.prompt(text);
+			},
+		},
+
+		//	ユーザーに情報を通知する系をまとめます
+		_output	:	{
+			//	モーダル系をまとめる用のオブジェクトにする
+			alert	:	function(text){
+				window.alert(text);
+			},
+			//	非同期に出力する系をまとめる用のオブジェクトにする
+			console	:	function(text){
+				window.console.log(text);
+			},
+		},
+
+		//	処理系をまとめる
+		_modul	:	{
+			//	対話系
+			ask	:	{
+				//	プラグインを使用するか
+				use	:	function(){
+
+				},
+				//	プラグインを終了するか
+				quit	:	function(){
+
+				},
+			},
+		},
+		//	システムプロパティです
+		_system	:	{
+			//	システムの初期状態は「準備」にします
+			scene	:	'preparation',
+			//	まだなにもかんがえてない
+			stage	:	,
+			},
+		},
+	};
+
+})();
+
+// var0.013
 jQuery(document).ready(function() {
 	/* 実行テスト */
 	// jQuery(document.body).on('click', function(event) {
-	// 	event.preventDefault();
 	// 	/* Act on the event */
 	// });
-	jQuery(document.body).plugin.id();
+  jQuery(document.body).plugin.id();
 });
