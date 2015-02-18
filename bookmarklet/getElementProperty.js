@@ -53,22 +53,6 @@
 		},
 
 
-		//	ユーザーからの入力を求める処理系をまとめます
-		_imput	:	{
-			//	prompt表示
-			prompt	:	function(text){
-				return window.prompt(text);
-			},
-		},
-
-		//	ユーザーに情報を通知する系をまとめます
-		_output	:	{
-			//	表示形態で分ける予定です　表示用データ形式はどれも共通にします
-			alert	:	function(text){
-				window.alert(text);
-			},
-		},
-
 		//	処理系をまとめます
 		_modul	:	{
 			//	対話系です
@@ -82,14 +66,31 @@
 
 				},
 			},
+	
+			//	ユーザーからの入力を求める処理系のサブルーチンまとめになる予定
+			_imput	:	{
+				// //	prompt表示
+				// prompt	:	function(text){
+				// 	return window.prompt(text);
+				// },
+			},
+
+			//	ユーザーに情報を通知する系のサブルーチンまとめになる予定です
+			_output	:	{
+				//	表示形態で分ける予定です　表示用データ形式はどれも共通にします
+				alert	:	function(text){
+					window.alert(text);
+				},
+			},
 		},
+
 		//	システムプロパティです
 		_system	:	{
 			//	システムの初期状態は「準備」にします
 			scene	:	'preparation',
 			//	まだなにもかんがえてない
 			stage	:	'',
-			},
+		},
 	};
 
 })();
