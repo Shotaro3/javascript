@@ -19,34 +19,30 @@
 
 		//	基本機能の処理を定義します
 		_controler	:	{
-			// 	場面操作ごとに管理します
+			// 	状況ごとに区分けし、管理します
 			scene	:	{
-				//	準備
+				//	準備する
 				preparation	: function(){
 					//	プラグイン有効時に呼ばれます
 					//	起動するかの対話
 					//	初期化系処理
 				},
-				//	細かな設定確認用
+				//	細かな設定する
 				consultation	:	function(){
 					//	今は全く見えていないけれども、詳細設定したいよって時に呼ばれます
 					//	深く考えていないけれども、細かな設定する際の対話
 				}
-				//	起動時
-				beginning	:	function(){
-					//	稼働用の設定等
-				}, 
-				//	稼働状態
+				//	稼働する
 				services	:	function(){
 					//	マウスクリックされたら、ユーザーから確認した通りに内容を出力します
 					//	・出力したい属性
 					//	・出力方法
 				}, 
-				//	待機時
+				//	待機する
 				idling	:	function(){
 					//	システムを待機させます（内容はまだかんがえてない）
 				}, 
-				//	終了状態
+				//	終了する
 				ending	:	function(){
 					//	完全に停止させる
 				}, 
@@ -80,11 +76,11 @@
 				/**	//今回はおそらくプロンプト一択	**/
 				//	内容を求める
 				open	:	function(text){
-					window.prompt(text);
+					return window.prompt(text);
 				},
 				//	決定を求める
 				closed	:	function(text){
-					window.confirm(text);
+					return window.confirm(text);
 				},
 			},
 
