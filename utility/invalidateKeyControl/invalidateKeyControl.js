@@ -97,6 +97,9 @@ addEventListener('DOMContentLoaded', function() {
 
 	})(KEY_CODE,DISABLE_KEY_NAME)
 
+
+	// ユーザー通知にデータを返します(丸投げ)。 VIEW処理を完全に分けたいでござる
+	// return systemProparty;
 });
 
 //	画面ごとに下記を書けばいいと思う　インターフェイスの予定。配列にする予定
