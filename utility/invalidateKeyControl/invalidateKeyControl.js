@@ -9,13 +9,18 @@ addEventListener('DOMContentLoaded', function() {
 	"use strict";
 
 	/*		受領データを処理用に整理します	*/
-		//	インターフェイスは配列にし、内部でオブジェクトにする予定
+		//	データ構造に失敗した感がひどい
+		var disable_key_name = {};
+		for (var i = 0 ; i < DISABLE_KEY_NAME.length;i++) {
+			var keyName = DISABLE_KEY_NAME[i];
+			disable_key_name[keyName] = '';
+		}
 
 		//	キーの有効・無効設定の作成です
 		var _key = {};
 		for (var name in KEY_CODE) {
-			var code	=	KEY_CODE[name];
-			var	status	=	(DISABLE_KEY_NAME[name] === undefined)?	'enable':	'disable';
+			var	code	=	KEY_CODE[name];
+			var	status	=	(disable_key_name[name] === undefined)?	'enable':	'disable';
 
 			_key[code] = {
 				name	:	name,
@@ -59,24 +64,29 @@ addEventListener('DOMContentLoaded', function() {
 	/*		処理系です。	*/
 	//	共通処理はやっぱりわけないとダメかも
 	function isClicked () {
-
 		console.log("クリック:");
-		window.event.returnValue = false;
 
 	}
 	function isDownKey () {
 		console.log("キーダウン:");
-		if (systemProparty.rule.key[window.event.keyCode].state == 'disable') {
-			window.event.returnValue = false;
-		}
+		commonDisableScript();
 	}
 	function isUpKey () {
-		window.event.returnValue = false;
 		console.log("キーアップ:");
-		if (systemProparty.rule.key[window.event.keyCode].state == 'disable') {
+		commonDisableScript();
+	}
+	// 	共通処理まとめです
+	function commonDisableScript () {
+		var type = window.event.type;
+		var code = window.event.keyCode;
+
+		if (systemProparty.rule.key[code].state == 'disable') {
+			console.log('禁止');
 			window.event.returnValue = false;
 		}
 	}
+
+
 
 	/*		イベントのハンドリングです	*/
 	// HTMLにイベント登録します
@@ -89,9 +99,9 @@ addEventListener('DOMContentLoaded', function() {
 
 });
 
-//	画面ごとに下記を書きます　インターフェイスの予定。配列にする予定
-var DISABLE_KEY_NAME = {
-	'Z':'',
-	'BackSpace':'',
-	'Enter':'',
-};
+//	画面ごとに下記を書けばいいと思う　インターフェイスの予定。配列にする予定
+var DISABLE_KEY_NAME = new Array(
+	'Z'
+	,'BackSpace'
+	,'Enter'
+);
