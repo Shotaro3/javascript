@@ -16,6 +16,7 @@ addEventListener('DOMContentLoaded', function() {
 		}
 
 		//	キーの有効・無効設定の作成です
+		//	ターゲットも指定すると使える感が出るっぽい
 		var _key = {};
 		for (var name in KEY_CODE) {
 			var	code	=	KEY_CODE[name];
