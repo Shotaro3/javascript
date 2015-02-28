@@ -1,6 +1,8 @@
 // キーの無効化をコントロールします
+//	定義からイベント登録までの開始タイミングはDOM度M生成後にします
 addEventListener('DOMContentLoaded', function() {
 
+	//	一応カプセル化しときます
 	(function(KEY_CODE,DISABLE_KEY_NAME){
 	/*		記述ルール的な	*/
 	//	危険な記述を禁止しますよ
@@ -9,22 +11,22 @@ addEventListener('DOMContentLoaded', function() {
 	/*		受領データを処理用に整理します	*/
 		//	インターフェイスは配列にし、内部でオブジェクトにする予定
 
-		//	キーの有効・無効の設定の作成と登録です
-		var _rule = {};
+		//	キーの有効・無効設定の作成です
+		var _key = {};
 		for (var name in KEY_CODE) {
 			var code	=	KEY_CODE[name];
 			var	status	=	(DISABLE_KEY_NAME[name] === undefined)?	'enable':	'disable';
 
-			_rule[code] = {
+			_key[code] = {
 				name	:	name,
 				state	:	status,
 			}
 		};
 
-	/*		この関数で使うであろう管理するプロパティです	*/
+	/*		プロパティ定義です	*/
 	//	コマンド入力などする場合、これを見る感じです
 		var systemProparty ={
-			// ユーザー操作状況の管理定義体
+			// ユーザーの操作状況
 			useState	:	{
 				downKeyIs		:	{
 					count	:	0,
@@ -34,18 +36,13 @@ addEventListener('DOMContentLoaded', function() {
 					count	:	0,
 					name	:	'',
 				},
-				count		:	{
-					up	:	function (ct){
-						return ct++;
-					}
-				},
 			},
 			//	有効・無効の定義体です
-			//	key 配下のオブジェクトは下記のように定義してください
-			//	keycode	.keyname
-			//			.enable or disable
 			rule	:{
-				key	:	_rule,
+				//	キーのルールは下記のように定義してください
+				//	keycode	.keyname
+				//			.enable or disable
+				key	:	_key,
 			},
 		};
 	console.log(systemProparty.rule.key);
@@ -69,8 +66,6 @@ addEventListener('DOMContentLoaded', function() {
 	function isDownKey () {
 		console.log("キーダウン:");
 		if (systemProparty.rule.key[window.event.keyCode].state == 'disable') {
-			alert('今押したのは'+systemProparty.rule.key[window.event.keyCode].name+'ですね？どやぁ');
-
 			window.event.returnValue = false;
 		}
 	}
@@ -97,4 +92,5 @@ addEventListener('DOMContentLoaded', function() {
 var DISABLE_KEY_NAME = {
 	'Z':'',
 	'BackSpace':'',
+	'Enter':'',
 };
