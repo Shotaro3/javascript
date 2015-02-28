@@ -91,6 +91,8 @@ addEventListener('DOMContentLoaded', function() {
 		//	今回は全く使う予定ない
 		// systemProparty.useState.history.push(command);
 		// console.log(systemProparty.useState.history);
+
+		console.log(code);
 	}
 	function commonDisableScript () {
 		var type = window.event.type;
@@ -118,13 +120,9 @@ addEventListener('DOMContentLoaded', function() {
 	}
 
 	})(KEY_CODE,DISABLE_KEY_NAME)
-
-
-	// ユーザー通知にデータを返します(丸投げ)。 VIEW処理を完全に分けたいでござる
-	// return systemProparty;
 });
 
-//	画面ごとに下記を書けばいいと思う　インターフェイスの予定。配列にする予定
+//	インターフェイスの予定。
 var DISABLE_KEY_NAME = new Array(
 	'Z'
 	,'BackSpace'
