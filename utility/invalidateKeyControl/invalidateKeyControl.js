@@ -62,27 +62,27 @@ addEventListener('DOMContentLoaded', function() {
 	function isClicked () {
 		console.log("クリック:");
 
-		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		// 本当は共通処理で更新するヒストリーから取得するが面倒なので借り書き
 		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	function isDownKey () {
 		console.log("キーダウン:");
 		commonDisableScript();
-		commonkeyUpdate();
+		commonUpdateScript();
 
-		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		// 本当は共通処理で更新するヒストリーから取得するが面倒なので借り書き
 		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	function isUpKey () {
 		console.log("キーアップ:");
 		commonDisableScript();
-		commonkeyUpdate();
+		commonUpdateScript();
 
-		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		// 本当は共通処理で更新するヒストリーから取得するが面倒なので借り書き
 		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	// 	共通処理まとめです
-	function commonkeyUpdate () {
+	function commonUpdateScript () {
 		var type	=	window.event.type;
 		var code	=	window.event.keyCode;
 		var	name	=	systemProparty.rule.key[code].name
