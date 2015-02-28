@@ -1,5 +1,5 @@
 // キーの無効化をコントロールします
-//	定義からイベント登録までの開始タイミングはDOM度M生成後にします
+//	定義からイベント登録までの開始タイミングはDOM生成後にします
 addEventListener('DOMContentLoaded', function() {
 
 	//	一応カプセル化しときます
@@ -36,6 +36,7 @@ addEventListener('DOMContentLoaded', function() {
 					count	:	0,
 					name	:	'',
 				},
+				history	:	new Array(),
 			},
 			//	有効・無効の定義体です
 			rule	:{
@@ -45,7 +46,7 @@ addEventListener('DOMContentLoaded', function() {
 				key	:	_key,
 			},
 		};
-	console.log(systemProparty.rule.key);
+	console.log(systemProparty);
 
 	/*		システムのコントロール系処理です。	*/
 	//	検知する操作にひもづくメソッドの登録です
