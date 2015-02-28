@@ -9,7 +9,6 @@ addEventListener('DOMContentLoaded', function() {
 	"use strict";
 
 	/*		受領データを処理用に整理します	*/
-		//	データ構造に失敗した感がひどい
 		var disable_key_name = {};
 		for (var i = 0 ; i < DISABLE_KEY_NAME.length;i++) {
 			var keyName = DISABLE_KEY_NAME[i];
@@ -29,7 +28,6 @@ addEventListener('DOMContentLoaded', function() {
 		};
 
 	/*		プロパティ定義です	*/
-	//	コマンド入力などする場合、これを見る感じです
 		var systemProparty ={
 			// ユーザーの操作状況
 			useState	:	{
@@ -41,7 +39,7 @@ addEventListener('DOMContentLoaded', function() {
 					count	:	0,
 					name	:	'',
 				},
-				history	:	new Array(),
+				history	:	new Array(new Array()),
 			},
 			//	有効・無効の定義体です
 			rule	:{
@@ -51,10 +49,8 @@ addEventListener('DOMContentLoaded', function() {
 				key	:	_key,
 			},
 		};
-	console.log(systemProparty);
 
 	/*		システムのコントロール系処理です。	*/
-	//	検知する操作にひもづくメソッドの登録です
 	var detection ={
 		click	:	function () {return isClicked() },
 		keydown	:	function () {return isDownKey() },
@@ -62,26 +58,51 @@ addEventListener('DOMContentLoaded', function() {
 	}
 
 	/*		処理系です。	*/
-	//	共通処理はやっぱりわけないとダメかも
 	function isClicked () {
 		console.log("クリック:");
 
+		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	function isDownKey () {
 		console.log("キーダウン:");
 		commonDisableScript();
+		commonkeyUpdate();
+
+		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	function isUpKey () {
 		console.log("キーアップ:");
 		commonDisableScript();
+		commonkeyUpdate();
+
+		// 本当は共通処理でヒストリーから取得するが面倒なので借り書き
+		systemProparty.useState.history[0][0] = window.event.type;
 	}
 	// 	共通処理まとめです
+	function commonkeyUpdate () {
+		var type	=	window.event.type;
+		var code	=	window.event.keyCode;
+		var	name	=	systemProparty.rule.key[code].name
+		var command =	new Array(type,name,code);
+
+		//	今回は全く使う予定ない
+		// systemProparty.useState.history.push(command);
+		// console.log(systemProparty.useState.history);
+	}
 	function commonDisableScript () {
 		var type = window.event.type;
 		var code = window.event.keyCode;
 
+		//	使用が禁止されているものを無効化
 		if (systemProparty.rule.key[code].state == 'disable') {
 			console.log('禁止');
+			window.event.returnValue = false;
+		}
+		//	長押しを無効化（なんとなく）
+		if (systemProparty.useState.history[0][0] == type ) {
+			console.log('ざっくりすぎるが、長押し禁止');
 			window.event.returnValue = false;
 		}
 	}
