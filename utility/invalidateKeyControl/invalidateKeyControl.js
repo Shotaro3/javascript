@@ -51,13 +51,6 @@ addEventListener('DOMContentLoaded', function() {
 			},
 		};
 
-	/*		システムのコントロール系処理です。	*/
-	var detection ={
-		click	:	function () {return isClicked() },
-		keydown	:	function () {return isDownKey() },
-		keyup	:	function () {return isUpKey() },
-	}
-
 	/*		処理系です。	*/
 	function isClicked () {
 		console.log("クリック:");
@@ -81,12 +74,12 @@ addEventListener('DOMContentLoaded', function() {
 		// 本当は共通処理で更新するヒストリーから取得するが面倒なので借り書き
 		systemProparty.useState.history[0][0] = window.event.type;
 	}
-	// 	共通処理まとめです
+	// 	共通処理　システムプロパティの更新処理です
 	function commonUpdateScript () {
-		var type	=	window.event.type;
-		var code	=	window.event.keyCode;
+		var	type	=	window.event.type;
+		var	code	=	window.event.keyCode;
 		var	name	=	systemProparty.rule.key[code].name
-		var command =	new Array(type,name,code);
+		var	command =	new Array(type,name,code);
 
 		//	今回は全く使う予定ない
 		// systemProparty.useState.history.push(command);
@@ -94,9 +87,10 @@ addEventListener('DOMContentLoaded', function() {
 
 		console.log(code);
 	}
+	// 	共通処理　無効操作の判定処理です
 	function commonDisableScript () {
-		var type = window.event.type;
-		var code = window.event.keyCode;
+		var	type = window.event.type;
+		var	code = window.event.keyCode;
 
 		//	使用が禁止されているものを無効化
 		if (systemProparty.rule.key[code].state == 'disable') {
@@ -110,10 +104,16 @@ addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-
-
 	/*		イベントのハンドリングです	*/
-	// HTMLにイベント登録します
+
+	//	検出検出とイベントと紐づくメソッドの定義です
+	var detection ={
+		click	:	function () {return isClicked() },
+		keydown	:	function () {return isDownKey() },
+		keyup	:	function () {return isUpKey() },
+	}
+
+	//	HTMLにイベント登録します
 	for (var key in detection) {
 		var data = detection[key];
 		document.addEventListener(key,data, false);
@@ -123,7 +123,10 @@ addEventListener('DOMContentLoaded', function() {
 });
 
 //	インターフェイスの予定。
-var DISABLE_KEY_NAME = new Array(
+//	TODO　クローズドにしたい
+//	TODO　基本キー無効の場合、面倒なので　CONTROL.target.keybord.ALL.disable のように全無効しやすいようにしたい
+//			定義体のイメージは、CONTROL.イベントターゲット.入力種類.キーの種類.無効（指定されるのが無効なのでこれはいらないかも）
+const DISABLE_KEY_NAME = new Array(
 	'Z'
 	,'BackSpace'
 	,'Enter'

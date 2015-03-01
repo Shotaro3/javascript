@@ -2,7 +2,7 @@
 //　リストは下記プログから
 //　http://hakuhin.jp/js/key_board.html
 //	MACの英数キーでなどでエラーが起きるでござる
-var KEY_CODE = { 
+const KEY_CODE = { 
 	// ０−９、A-Z
 	0	:	48,
 	1	:	49,
