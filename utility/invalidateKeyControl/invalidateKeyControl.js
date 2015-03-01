@@ -125,9 +125,20 @@ addEventListener('DOMContentLoaded', function() {
 //	インターフェイスの予定。
 //	TODO　クローズドにしたい
 //	TODO　基本キー無効の場合、面倒なので　CONTROL.target.keybord.ALL.disable のように全無効しやすいようにしたい
-//			定義体のイメージは、CONTROL.イベントターゲット.入力種類.キーの種類.無効（指定されるのが無効なのでこれはいらないかも）
+//			定義体のイメージは、CONTROLE.イベントターゲット.入力種類.キーの種類.無効（指定されるのが無効なのでこれはいらないかも）
 const DISABLE_KEY_NAME = new Array(
 	'Z'
 	,'BackSpace'
 	,'Enter'
 );
+const CONTROLE = new Array({
+	id	:	new Array({
+		keydown	:	{
+			A	:	'disable',
+		},
+		mouse	:	{
+			rightClick	:	'disable',
+		},
+	}),
+});
+console.log(CONTROLE);
